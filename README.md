@@ -1,30 +1,119 @@
 # Interactive Modern SaaS Website
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A modern, interactive **SaaS marketing website** — "Creative Flow Studio" — with an animated hero, product pages, a full blog engine, auth page mockups, a showcase gallery, and interactive "create" studio tools (design system, interactive story, motion graphics, soundscape design). Built with Next.js 15, React Three Fiber, and shadcn-style UI.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/gileb64375-5584s-projects/v0-interactive-modern-saa-s-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/8nj6vzYUiq8)
+> Built by Girish Lade — https://ladestack.in
 
-## Overview
+## What it does
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Landing page** (`/`) — animated hero, feature cards, CTA sections
+- **Create studio** (`/create`) — interactive tools:
+  - Design System builder
+  - Interactive Story creator
+  - Motion Graphics studio
+  - Soundscape Design tool
+- **Blog** (`/blog`) — static blog with slugs, related posts, tag/calendar metadata
+- **Auth mockups** (`/auth/login`, `/auth/signup`) — front-end only, no backend
+- **Showcase** (`/showcase`) — project gallery
+- **Projects** (`/projects/new`) — new-project flow
+
+Everything is front-end only: blog data lives in `lib/blog-data`, no API routes, no database, no login backend.
+
+## Features
+
+- 3D/interactive visuals with React Three Fiber + drei
+- Gesture-driven interactions (`@use-gesture/react`)
+- Blog engine with dynamic slugs + related-posts logic
+- Dark-mode-ready theming (next-themes)
+- Full Radix UI / shadcn component set
+- Typography plugin for rich blog content
+- Fully static-exportable
+
+## Tech stack
+
+- **Framework:** Next.js 15 (App Router) — static export (`output: 'export'`)
+- **3D:** @react-three/fiber, @react-three/drei
+- **UI:** React 19, Tailwind CSS 3.4, Radix UI, shadcn-style components
+- **Icons:** lucide-react
+- **Gestures:** @use-gesture/react
+- **Forms:** react-hook-form + zod
+- **Fonts:** Geist
+- **Language:** TypeScript
+
+## Quick start
+
+### Prerequisites
+
+- Node.js 18+ (20 recommended)
+- npm, pnpm, or yarn
+
+### Install & run
+
+```bash
+npm install        # or: pnpm install
+npm run dev
+```
+
+Open http://localhost:3000
+
+### Build (static)
+
+```bash
+npm run build
+```
+
+Static output goes to `out/`. Serve anywhere:
+
+```bash
+npx serve out
+```
+
+## Project structure
+
+```
+app/
+├── page.tsx                     # landing page (hero, features, CTAs)
+├── layout.tsx / globals.css
+├── auth/login|signup/           # auth page mockups (UI only)
+├── blog/                        # blog index + [slug] pages (static params)
+├── create/                      # studio tools: design-system, interactive-story,
+│                                #   motion-graphics, soundscape-design
+├── projects/new/                # new project flow
+└── showcase/                    # gallery
+components/
+├── ui/                          # shadcn-style primitives
+└── blog/                        # related-posts etc.
+lib/
+├── blog-data.ts                 # blog posts data
+├── blog-utils.ts                # related posts, helpers
+└── utils.ts
+public/                          # static assets
+```
+
+## Customizing content
+
+- **Blog posts:** edit `lib/blog-data.ts`
+- **Copy/sections:** edit the page components under `app/`
+- **Theme:** `app/globals.css` + `tailwind.config.ts`
+
+## Environment variables
+
+None required. Fully static — no secrets, no backend services.
 
 ## Deployment
 
-Your project is live at:
+Any static host: GitHub Pages, Cloudflare Pages, Netlify, Vercel.
 
-**[https://vercel.com/gileb64375-5584s-projects/v0-interactive-modern-saa-s-website](https://vercel.com/gileb64375-5584s-projects/v0-interactive-modern-saa-s-website)**
+This repo ships as a static export on GitHub Pages — see the repo's Website field.
 
-## Build your app
+> Note: `next.config.mjs` uses `basePath: '/interactive-modern-saa-s-website'` for the GitHub Pages subpath deploy. Remove it for root-domain or Vercel deploys.
 
-Continue building your app on:
+## Notes
 
-**[https://v0.app/chat/projects/8nj6vzYUiq8](https://v0.app/chat/projects/8nj6vzYUiq8)**
+- Generated originally with v0.app and refined for static hosting.
+- Next.js 15.2.8 (patched against CVE-2025-55182 / React2Shell).
+- The `latest` dependency pins in `package.json` come from the v0 template; pin versions for production use.
 
-## How It Works
+---
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Built with ❤ by [Girish Lade](https://github.com/girishlade111) — [ladestack.in](https://ladestack.in)

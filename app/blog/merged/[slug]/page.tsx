@@ -35,6 +35,11 @@ interface MergedBlogPageProps {
   }
 }
 
+// Static-export support: pre-render a sample merged-post page.
+export async function generateStaticParams() {
+  return [{ slug: "sample-merge" }]
+}
+
 export default function MergedBlogPage({ params }: MergedBlogPageProps) {
   const mergedPost = getMergedPost(params.slug)
 

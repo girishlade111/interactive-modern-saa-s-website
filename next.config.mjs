@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: '/interactive-modern-saa-s-website',
   eslint: {
     ignoreDuringBuilds: true,
   },
